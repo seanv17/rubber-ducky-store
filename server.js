@@ -83,6 +83,7 @@ app.delete('/api/categories/:id', function (req, res) {
  * JSON API Endpoints
  */
 
+app.get('/templates/:name', controllers.api.templates);
 
 
 // ALL OTHER ROUTES (ANGULAR HANDLES)
