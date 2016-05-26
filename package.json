@@ -1,0 +1,23 @@
+{
+  "name": "rubber-ducky-store",
+  "version": "1.0.0",
+  "description": "rubber_duck_store ecomm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seanv17/rubber-ducky-store.git"
+  },
+  "author": "Sean Van Ho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seanv17/rubber-ducky-store/issues"
+  },
+  "homepage": "https://github.com/seanv17/rubber-ducky-store#readme",
+  "dependencies": {
+    "mongoose": "^4.4.19"
+  }
+}
