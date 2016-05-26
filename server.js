@@ -49,16 +49,18 @@ app.post('/api/categories', function (req, res) {
   // create new category with form data ('req.body')
   var newCategory = new db.Category({
     name: req.body.name,
-    description: req.body.description
+    description: req.body.description,
   });
-
-  // only adds a product to a category if the product already exists
+  // find the product from req.body
   db.Product.findOne({ name: req.body.product }, function(err, product) {
-    newCategory.product = product;
-    // add new Category to database
+    if (err) {
+      return console.log('err: ', err);
+    }
+    // add this product to the category
     newCategory.save(function(err, category) {
       if (err) { return console.log('created error: ', err ); }
         console.log('created :', category.name);
+        // send back the category!
         res.json(category);
     });
   });
@@ -70,7 +72,9 @@ app.delete('/api/categories/:id', function (req, res) {
   console.log('category to be deleted', req.params);
   var categoryId = req.params.id;
   // find the index of the category we want to remove
-  db.Category.findOneAndRemove({ _id: categoryId }, function (err, deletedCategory) {
+  db.Category.findOneAndRemove({ _id: categoryId })
+    .populate('product')
+    .exec(function (err, deletedCategory) {
     res.json(deletedCategory);
   });
 });

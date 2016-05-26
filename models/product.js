@@ -14,7 +14,6 @@ var ProductSchema = new Schema({
   weight: Number,
   size: String,
   color: String,
-  
 });
 
 var Product = mongoose.model('Product', ProductSchema);
