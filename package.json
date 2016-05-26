@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/seanv17/rubber-ducky-store#readme",
   "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "handlebars": "^4.0.5",
     "mongoose": "^4.4.19"
   }
 }
