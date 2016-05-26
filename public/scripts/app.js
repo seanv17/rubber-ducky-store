@@ -32,6 +32,18 @@ angular
       }, function errorCallback(response) {
         console.log('There was an error posting the data: ', response);
       });
-    }
+    };
+
+    vm.deleteCategory = function (category) {
+      $http({
+        method: 'DELETE',
+        url: '/api/categories/' + category._id
+      }).then(function successCallback(json) {
+        var index = vm.categories.indexOf(category);
+        vm.categories.splice(index, 1);
+      }, function errorCallback(response) {
+        console.log('There was an error deleting the data: ', response);
+      });
+    };
 
   }

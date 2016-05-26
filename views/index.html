@@ -101,6 +101,15 @@
                   </ul>
                 </div>
               </div>
+
+              <div class='panel-footer'>
+                <div class='panel-footer'>
+                  <button class='btn btn-danger' ng-click="categoriesShowCtrl.deleteCategory(category)">Delete Category</button>
+                  <button class='btn btn-info' ng-hide="editing" ng-click="editing = true">Edit Category</button>
+                  <button class='btn btn-success' ng-show="editing" ng-click="categoriesShowCtrl.editCategory(category); editing = false">Save Changes</button>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
