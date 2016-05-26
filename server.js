@@ -22,9 +22,6 @@ var ejs = require('ejs');
 app.engine('html', ejs.renderFile);
 app.set('view engine', 'html');
 
-var controllers = require('./controllers');
-
-
 /**********
  * ROUTES *
  **********/
@@ -40,10 +37,13 @@ app.get('/', function homepage (req, res) {
 // get all categories
 app.get('/api/categories', function (req, res) {
   // send all categories as JSON response
-  db.Category.find(function(err, categories) {
-    if (err) { return console.log('index error: ', err); }
-    res.json(categories);
-  });
+  db.Category.find()
+    // populate-fills in the product id with all the product data
+    .populate('product')
+    .exec(function(err, categories) {
+      if (err) { return console.log('index error: ', err); }
+      res.json(categories);
+    });
 });
 
 // get one category
@@ -56,10 +56,20 @@ app.get('/api/categories/:id', function (req, res) {
 // create new category
 app.post('/api/categories', function (req, res) {
   // create new category with form data ('req.body')
-  console.log('category created: ', req.body);
-  var newCategory = new db.Category(req.body);
-  newCategory.save(function handleDBCategorySaved(err, savedCategory) {
-    res.json(savedCategory);
+  var newCategory = new db.Category({
+    name: req.body.name,
+    description: req.body.description
+  });
+
+  // only adds a product to a category if the product already exists
+  db.Product.findOne({ name: req.body.product }, function(err, product) {
+    newCategory.product = product;
+    // add new Category to database
+    newCategory.save(function(err, category) {
+      if (err) { return console.log('created error: ', err ); }
+        console.log('created :', category.name);
+        res.json(category);
+    });
   });
 });
 
@@ -68,7 +78,7 @@ app.delete('/api/categories/:id', function (req, res) {
   // get category id from URL params ('req.params')
   console.log('category to be deleted', req.params);
   var categoryId = req.params.id;
-  // find the index of the book we want to remove
+  // find the index of the category we want to remove
   db.Category.findOneAndRemove({ _id: categoryId }, function (err, deletedCategory) {
     res.json(deletedCategory);
   });
