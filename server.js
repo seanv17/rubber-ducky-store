@@ -6,12 +6,14 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var db = require('./models');
+var controllers = require('./controllers');
 
 // serve static files from public folder
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 // need to add this so that we can accept request payloads
 app.use(bodyParser.json());
+
 
 /**********
  * ROUTES *
