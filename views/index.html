@@ -22,16 +22,47 @@
 
   </head>
   <body>
-  <div class="jumbotron">
     <div class="container">
       <h1>Welcome to Rubber Ducky Store</h1>
       <p>Your one-stop rubber ducky depot!</p>
     </div>
-  </div>
 
   <div class="container" ng-controller="CategoriesShowController as categoriesShowCtrl">
     <p><b>categoriesShowCtrl.newCategory:</b> {{categoriesShowCtrl.newCategory}}</p>
-  </div>
+    <input type="text" class="form-control" placeholder="New category name" ng-model="categoriesShowCtrl.newCategory.name">
+    <input type="text" class="form-control" placeholder="New category description" ng-model="categoriesShowCtrl.newCategory.description">
+
+  <div ng-repeat="category in categoriesShowCtrl.categories | orderBy: 'name' | filter: searchText" class="row">
+
+        <div class="col-md-10 col-md-offset-1">
+          <div class="panel panel-default">
+            <div class="panel-body">
+
+            <!-- begin album internal row -->
+              <div class="row">
+                <div class="col-md-3 col-xs-12 thumbnail">
+                  <img src="images/800x800.png" alt="album image">
+                </div>
+
+                <div class="col-md-9 col-xs-12">
+                  <ul class="list-group form-inline">
+                    <li class="list-group-item">
+                      <h4 class="inline-header">Category Name:</h4>
+                      <span>{{category.name}}</span>
+                    </li>
+
+                    <li class="list-group-item">
+                      <h4 class="inline-header">Category Description:</h4>
+                      <span>{{category.description}}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 </body>
 

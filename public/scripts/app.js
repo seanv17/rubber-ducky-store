@@ -10,4 +10,20 @@ angular
       name: 'Gold Duckies',
       description: 'I love goooooold duckies'
     };
+
+    vm.categories = [
+      {
+        name: 'Coming Home',
+        description: 'Leon Bridges'
+      },
+      {
+        name: 'Are We There',
+        description: 'Sharon Van Etten'
+      },
+      {
+        name: 'The Queen is Dead',
+        description: 'The Smiths'
+      }
+    ];
+
   }
