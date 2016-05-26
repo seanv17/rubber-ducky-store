@@ -28,10 +28,48 @@
     </div>
 
   <div class="container" ng-controller="CategoriesShowController as categoriesShowCtrl">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+          <form class="form-horizontal" ng-submit="categoriesShowCtrl.createCategory()">
+            <fieldset>
+
+              <!-- Form Name -->
+              <legend>Add New Category</legend>
+
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-md-4 control-label">Category Name</label>
+                <div class="col-md-4">
+                <input id="name" ng-model="categoriesShowCtrl.newCategory.name" type="text" class="form-control input-md" required="">
+                </div>
+              </div>
+
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-md-4 control-label">Category Description</label>
+                <div class="col-md-4">
+                <input ng-model="categoriesShowCtrl.newCategory.description" type="text" class="form-control input-md">
+                </div>
+              </div>
+
+              <!-- Button -->
+              <div class="form-group">
+                <label class="col-md-4 control-label">Save Category</label>
+                <div class="col-md-4">
+                  <button class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+
     <p><b>categoriesShowCtrl.newCategory:</b> {{categoriesShowCtrl.newCategory}}</p>
     <input type="text" class="form-control" placeholder="New category name" ng-model="categoriesShowCtrl.newCategory.name">
     <input type="text" class="form-control" placeholder="New category description" ng-model="categoriesShowCtrl.newCategory.description">
 
+  <input type="text" class="form-control" ng-model="searchText" placeholder="Search Categories">
   <div ng-repeat="category in categoriesShowCtrl.categories | orderBy: 'name' | filter: searchText" class="row">
 
         <div class="col-md-10 col-md-offset-1">
@@ -52,8 +90,13 @@
                     </li>
 
                     <li class="list-group-item">
-                      <h4 class="inline-header">Category Description:</h4>
-                      <span>{{category.description}}</span>
+                      <h4 class="inline-header">Product Name:</h4>
+                      <span>{{category.Product.name}}</span>
+                    </li>
+
+                    <li class="list-group-item">
+                      <h4 class="inline-header">Product Description:</h4>
+                      <span>{{category.Product.description}}</span>
                     </li>
                   </ul>
                 </div>
