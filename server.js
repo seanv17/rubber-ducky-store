@@ -46,7 +46,7 @@ app.get('/api/categories', function (req, res) {
 
 // get one category
 app.get('/api/categories/:id', function (req, res) {
-  db.Categories.findOne({ _id: req.params._id }, function(err, data) {
+  db.Category.findById({ _id: req.params.id }, function(err, data) {
     res.json(data);
   });
 });
@@ -92,8 +92,6 @@ app.post('/api/categories', function (req, res) {
     });
   });
 });
-
-
 
 // delete category
 app.delete('/api/categories/:id', function (req, res) {
