@@ -14,6 +14,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // need to add this so that we can accept request payloads
 app.use(bodyParser.json());
 
+// set 'html' as the engine, using ejs's renderFile function
+var ejs = require('ejs');
+app.engine('html', ejs.renderFile);
+app.set('view engine', 'html');
+
 
 /**********
  * ROUTES *

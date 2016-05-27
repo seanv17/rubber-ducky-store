@@ -1,17 +1,16 @@
 angular
   .module('rubber-ducky-store')
-  .controller('CategoriesShowController', CategoriesShowController);
+  .controller('CategoriesIndexController', CategoriesIndexController);
 
-  CategoriesShowController.$inject = ['$http'];
+  CategoriesIndexController.$inject = ['$http'];
 
-  function CategoriesShowController ( $http ) {
+  function CategoriesIndexController ( $http ) {
     var vm = this;
     vm.newCategory = {};
-
     vm.newCategory = {
-      name: 'Gold Duckies',
-      description: 'I love goooooold duckies'
-    };
+   name: 'Viva Hate',
+   description: 'Morrissey'
+ };
 
     $http({
       method: 'GET',

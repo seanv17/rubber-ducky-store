@@ -1,23 +1,30 @@
+/* CLIENT-SIDE JS
+ *
+ * This is your main angular file. Edit as you see fit.
+ *
+ */
+
 angular
   .module('rubber-ducky-store', ['ngRoute'])
-  .config(config)
-  .controller('CategoriesShowController', CategoriesShowController);
+  .config(config);
 
-  function config ($routeProvider, $locationProvider) {
-    $routeProvider
+config.$inject = ['$routeProvider', '$locationProvider'];
+
+function config ($routeProvider, $locationProvider) {
+  $routeProvider
     .when('/', {
-      templateUrl:  'templates/categories',
-      controller:   'CategoriesIndexController',
-      controllerAs: 'categoriesIndexCtrl'
+      templateUrl: 'templates/categories',
+      controllerAs: 'categoriesIndexCtrl',
+      controller: 'CategoriesIndexController'
     })
     .when('/:id', {
-      templateUrl:  '/templates/categories-show',
-      controller:   'CategoriesShowController',
-      controllerAs: 'categoriesShowCtrl'
+      templateUrl: 'templates/categories-show',
+      controllerAs: 'categoriesShowCtrl',
+      controller: 'CategoriesShowController'
     });
 
     $locationProvider.html5Mode({
       enabled: true,
       requireBase: false
-    });
-  }
+  });
+}
