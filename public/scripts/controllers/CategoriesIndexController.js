@@ -8,8 +8,8 @@ angular
     var vm = this;
     vm.newCategory = {};
     vm.newCategory = {
-   name: 'Viva Hate',
-   description: 'Morrissey'
+   name: 'VIP duckies',
+   description: 'diamond ruby pearl duckies'
  };
 
     $http({

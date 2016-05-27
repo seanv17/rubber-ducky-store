@@ -35,10 +35,11 @@ app.get('/', function homepage (req, res) {
 // get all categories
 app.get('/api/categories', function (req, res) {
   // send all categories as JSON response
-  db.Category.find()
+  db.Category.find({ })
     // populate-fills in the product id with all the product data
     .populate('product')
     .exec(function(err, categories) {
+      console.log('categories: ', categories);
       if (err) { return console.log('index error: ', err); }
       res.json(categories);
     });
@@ -54,7 +55,6 @@ app.get('/api/categories/:id', function (req, res) {
 // update one category
 app.put('/api/categories/:id', function (req, res) {
   console.log('req.body: ', req);
-  var categoryId = req.body._id;
   var newName = req.body.name;
   var newDescription = req.body.description;
   db.Category.findById({ _id: req.params.id }, function(err, data) {

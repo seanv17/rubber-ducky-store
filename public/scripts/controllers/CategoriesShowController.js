@@ -13,6 +13,6 @@ function CategoriesShowController ( $http, $routeParams ) {
     url: '/api/categories/' + $routeParams.id
   }).then(function successCallback(json) {
     vm.category = json.data;
-    console.log('There was an error getting the data', response);
+    console.log('There was an error getting the data', json);
   });
 }

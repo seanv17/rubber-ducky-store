@@ -68,9 +68,15 @@
                   </li>
 
                   <li class="list-group-item">
+                    <h4 class="inline-header">Product Name:</h4>
+                    <span ng-hide="editing">{{category.product.name}}</span>
+                    <input ng-show="editing" ng-model="product.name" type="text" class="form-control input-md">
+                  </li>
+
+                  <li class="list-group-item">
                     <h4 class="inline-header">Product Description:</h4>
-                    <span ng-hide="editing">{{category.Product.description}}</span>
-                    <input ng-show="editing" ng-model="category.name" type="text" class="form-control input-md">
+                    <span ng-hide="editing">{{category.product.description}}</span>
+                    <input ng-show="editing" ng-model="product.description" type="text" class="form-control input-md">
                   </li>
                 </ul>
               </div>
