@@ -46,9 +46,29 @@ app.get('/api/categories/:id', function (req, res) {
   });
 });
 
+// update one category
+app.put('/api/categories/:id', function (req, res) {
+  console.log('req.body: ', req);
+  var categoryId = req.body._id;
+  var newName = req.body.name;
+  var newDescription = req.body.description;
+  db.Category.findById({ _id: req.params.id }, function(err, data) {
+    console.log('data: ', data);
+    data.name = newName;
+    data.description = newDescription;
+    data.save(function(err, updatedCategory) {
+      if(err) { return console.log('saving error: ', err); }
+      console.log('created :', updatedCategory);
+      // send back the updated category!
+      res.json(updatedCategory);
+    });
+  });
+});
+
 // create new category
 app.post('/api/categories', function (req, res) {
   // create new category with form data ('req.body')
+  console.log(req.body);
   var newCategory = new db.Category({
     name: req.body.name,
     description: req.body.description,
@@ -67,6 +87,8 @@ app.post('/api/categories', function (req, res) {
     });
   });
 });
+
+
 
 // delete category
 app.delete('/api/categories/:id', function (req, res) {

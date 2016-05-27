@@ -23,6 +23,7 @@ angular
     });
 
     vm.createCategory = function () {
+      console.log(vm.newCategory);
       $http({
         method: 'POST',
         url: '/api/categories',
@@ -31,6 +32,18 @@ angular
         vm.categories.push(response.data);
       }, function errorCallback(response) {
         console.log('There was an error posting the data: ', response);
+      });
+    };
+
+    vm.editCategory = function (category) {
+      $http({
+        method: 'PUT',
+        url: '/api/categories/' + category._id,
+        data: category
+      }).then(function successCallback(json) {
+        // nothing to do here!
+      }, function errorCallback(response) {
+        console.log('There was an error editing the data', response);
       });
     };
 
